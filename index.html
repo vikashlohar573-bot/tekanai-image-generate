@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AI Generator</title>
+  <title>AI Image Generator</title>
 </head>
 <body>
   <h1>AI Image Generator</h1>
-  <input type="text" placeholder="Enter idea">
+
+  <input type="text" id="prompt" placeholder="Enter idea">
   <button onclick="generate()">Generate</button>
-  <p id="output"></p>
+
+  <br><br>
+  <img id="image" width="300">
 
   <script src="script.js"></script>
 </body>
