@@ -1,48 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-  <title>Tankgan AI Image Generator</title>
-  <style>
-    body {
-      text-align: center;
-      font-family: Arial;
-      background: #0f172a;
-      color: white;
-    }
-    input {
-      padding: 10px;
-      width: 250px;
-    }
-    button {
-      padding: 10px;
-      background: #22c55e;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-    img {
-      margin-top: 20px;
-      width: 300px;
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TekanAI Image Generate - Free AI Image Generator Hindi | Unlimited</title>
+    <meta name="description" content="Free AI Image Generator Hindi - Unlimited HD images banaye! No login, instant preview & download.">
+    <meta name="keywords" content="ai image generator hindi, free text to image, unlimited ai images, hindi ai art">
+    <meta property="og:title" content="TekanAI - Free Unlimited AI Image Generator">
+    <meta property="og:description" content="Bilkul free unlimited AI images! Preview + Download.">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/image.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>🖼️ TekanAI</h1>
+                <span>Image Generate - Free Unlimited</span>
+            </div>
+            <p>🔥 No Login | Instant Preview | HD Download</p>
+        </header>
 
-  <h1>Tankgan AI Image Generator</h1>
+        <div class="generator">
+            <div class="input-section">
+                <textarea id="promptInput" placeholder="Image description type karo (English best):
+'Red sports car on mountain road, sunset, realistic 4K'" rows="4"></textarea>
+                
+                <div class="options">
+                    <select id="styleSelect">
+                        <option value="realistic,photorealistic,4k">Realistic</option>
+                        <option value="cartoon,disney,pixar">Cartoon</option>
+                        <option value="anime,manga,japanese art">Anime</option>
+                        <option value="oil painting,masterpiece,artstation">Oil Painting</option>
+                        <option value="digital art,concept art,cyberpunk">Digital Art</option>
+                    </select>
+                    <button id="generateBtn" class="generate-btn">🎨 Generate Image</button>
+                </div>
+            </div>
 
-  <input type="text" id="prompt" placeholder="Enter your idea">
-  <button onclick="generate()">Generate</button>
+            <!-- PREVIEW GALLERY LIKE GEMINI -->
+            <div class="gallery-section" id="gallerySection" style="display: none;">
+                <h3>🤩 Generated Images (Download Karo)</h3>
+                <div class="image-grid" id="imageGrid"></div>
+                <button id="clearBtn" class="clear-btn">🗑️ Clear All</button>
+            </div>
 
-  <p id="loading"></p>
+            <div class="stats">
+                <span>✅ 100% Free | 🎯 Working Now | ⏱️ 10-30 Sec</span>
+            </div>
+        </div>
+    </div>
 
-  <img id="image">
-  <br>
-  <a id="download" download="ai-image.png">
-    <button>Download Image</button>
-  </a>
-
-  <script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
