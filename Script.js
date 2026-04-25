@@ -143,4 +143,4 @@ class TekanAI {
     }
 }
 
-const tekanAI = new TekanAI();
+const tekanAI = new TekanAI(); 
