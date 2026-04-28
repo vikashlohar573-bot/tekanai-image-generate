@@ -2,57 +2,95 @@
 <html>
 <head>
   <title>TekanAI</title>
+  <style>
+    body {
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      font-family:Arial;
+    }
+    input, select {
+      padding:10px;
+      margin:10px;
+      width:250px;
+    }
+    button {
+      padding:10px 20px;
+      background:#22c55e;
+      color:white;
+      border:none;
+      cursor:pointer;
+    }
+    .images {
+      margin-top:20px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    img {
+      width:200px;
+      margin:10px;
+      border-radius:10px;
+    }
+  </style>
 </head>
 
-<body style="text-align:center; font-family:Arial; background:#0f172a; color:white;">
+<body>
 
-<h1>🚀 TekanAI Image Generator</h1>
+<h1>🚀 TekanAI Generator</h1>
+<p>Free AI Image & Thumbnail Generator</p>
 
-<input id="prompt" placeholder="Enter prompt" style="padding:10px; width:250px;">
-<button onclick="generate()" style="padding:10px; background:green; color:white;">Generate</button>
+<input id="prompt" placeholder="Enter prompt">
+<select id="mode">
+  <option value="realistic">Realistic</option>
+  <option value="anime">Anime</option>
+  <option value="thumbnail">YouTube Thumbnail</option>
+</select>
+
+<br>
+<button onclick="generate()">Generate</button>
 
 <p id="loading"></p>
 
-<img id="image" width="300">
-
-<br><br>
-<button onclick="downloadImage()" style="padding:10px;">Download</button>
+<div class="images" id="images"></div>
 
 <script>
 function generate() {
   let prompt = document.getElementById("prompt").value;
+  let mode = document.getElementById("mode").value;
 
   if (!prompt) {
-    alert("कुछ लिखो पहले!");
+    alert("Enter prompt");
     return;
   }
 
-  document.getElementById("loading").innerText = "Image बन रही है...";
+  document.getElementById("loading").innerText = "Generating 4 images...";
 
-  // cache avoid करने के लिए random जोड़ रहे हैं
-  let url = "https://image.pollinations.ai/prompt/" 
-            + encodeURIComponent(prompt) 
-            + "?t=" + new Date().getTime();
+  let container = document.getElementById("images");
+  container.innerHTML = "";
 
-  let img = document.getElementById("image");
-  img.src = url;
+  for (let i = 0; i < 4; i++) {
+    let finalPrompt = prompt + ", " + mode + ", high quality, 4k";
+
+    let url = "https://image.pollinations.ai/prompt/" 
+              + encodeURIComponent(finalPrompt) 
+              + "?t=" + new Date().getTime() + i;
+
+    let img = document.createElement("img");
+    img.src = url;
+
+    // click to download
+    img.onclick = () => {
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = "ai-image.png";
+      a.click();
+    };
+
+    container.appendChild(img);
+  }
 
   document.getElementById("loading").innerText = "";
-}
-
-// download fix
-function downloadImage() {
-  let img = document.getElementById("image").src;
-
-  if (!img) {
-    alert("पहले image बनाओ!");
-    return;
-  }
-
-  let a = document.createElement("a");
-  a.href = img;
-  a.download = "ai-image.png";
-  a.click();
 }
 </script>
 
