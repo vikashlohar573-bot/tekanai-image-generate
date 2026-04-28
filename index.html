@@ -1,101 +1,26 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TekanAI - Free AI Image Generator | Gemini Style</title>
-    <meta name="description" content="Gemini jaisa free AI image generator - Google login, history save, unlimited HD images!">
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <title>TekanAI</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Login Screen -->
-    <div id="loginScreen" class="screen active">
-        <div class="login-container">
-            <div class="logo">
-                <div class="logo-icon">🖼️</div>
-                <h1>TekanAI</h1>
-                <p>AI Image Generator</p>
-            </div>
-            <button id="googleLoginBtn" class="login-btn">
-                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" width="20">
-                Google se Login Karo
-            </button>
-            <p class="login-note">Secure • Private • Free Forever</p>
-        </div>
-    </div>
 
-    <!-- Main App (Gemini Style) -->
-    <div id="mainApp" class="screen">
-        <div class="header">
-            <div class="user-info">
-                <img id="userAvatar" class="avatar" src="" alt="User">
-                <div>
-                    <div id="userName" class="user-name"></div>
-                    <button id="logoutBtn" class="logout-btn">Logout</button>
-                </div>
-            </div>
-            <div class="history-btn" id="historyBtn">
-                <span id="historyCount">0</span> History
-            </div>
-        </div>
+<h1>🚀 TekanAI Generator</h1>
 
-        <div class="chat-container">
-            <!-- History Section -->
-            <div id="historySection" class="history-panel">
-                <div class="history-header">
-                    <h3>Your Images</h3>
-                    <button id="clearHistoryBtn">Clear All</button>
-                </div>
-                <div id="historyList" class="history-list"></div>
-            </div>
+<input type="text" id="prompt" placeholder="Enter prompt">
+<button onclick="generate()">Generate</button>
 
-            <!-- Chat Input -->
-            <div class="message-input">
-                <textarea id="promptInput" placeholder="Kya image banani hai? (English best results)
-Example: 'A majestic lion in savanna, sunset, realistic 8k'" rows="3"></textarea>
-                <div class="input-actions">
-                    <select id="styleSelect">
-                        <option value="realistic,photorealistic,8k">Realistic</option>
-                        <option value="cartoon,studio ghibli">Cartoon</option>
-                        <option value="anime,cyberpunk">Anime</option>
-                        <option value="oil painting,renaissance">Painting</option>
-                    </select>
-                    <button id="generateBtn" class="generate-btn">Generate Image</button>
-                </div>
-            </div>
-        </div>
+<p id="loading"></p>
 
-        <!-- Loading -->
-        <div id="loadingOverlay" class="loading-overlay" style="display: none;">
-            <div class="loading-spinner"></div>
-            <p>AI Image bana raha hai... <span id="progress">10</span>%</p>
-        </div>
+<img id="image">
 
-        <!-- Generated Images Gallery -->
-        <div id="imagesGallery" class="images-gallery"></div>
-    </div>
+<br>
+<a id="download" download="image.png">
+  <button>Download</button>
+</a>
 
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-        
-        window.firebaseConfig = {
-            apiKey: "AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", // Free Firebase
-            authDomain: "tekanai-xxxxx.firebaseapp.com",
-            projectId: "tekanai-xxxxx",
-            storageBucket: "tekanai-xxxxx.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:xxxxxxxxxxxxxxxx"
-        };
+<script src="script.js"></script>
 
-        const app = initializeApp(firebaseConfig);
-        window.auth = getAuth(app);
-        window.db = getFirestore(app);
-        window.GoogleAuthProvider = GoogleAuthProvider;
-    </script>
-    <script src="script.js"></script>
 </body>
 </html>
