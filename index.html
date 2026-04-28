@@ -2,25 +2,37 @@
 <html>
 <head>
   <title>TekanAI</title>
-  <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-<h1>🚀 TekanAI Generator</h1>
+<body style="text-align:center; font-family:Arial; background:#0f172a; color:white;">
 
-<input type="text" id="prompt" placeholder="Enter prompt">
-<button onclick="generate()">Generate</button>
+<h1>🚀 TekanAI Image Generator</h1>
+
+<input id="prompt" placeholder="Enter prompt" style="padding:10px; width:250px;">
+<button onclick="generate()" style="padding:10px; background:green; color:white;">Generate</button>
 
 <p id="loading"></p>
 
-<img id="image">
+<img id="image" width="300">
 
-<br>
-<a id="download" download="image.png">
-  <button>Download</button>
-</a>
+<script>
+function generate() {
+  let prompt = document.getElementById("prompt").value;
 
-<script src="script.js"></script>
+  if (!prompt) {
+    alert("Enter prompt");
+    return;
+  }
+
+  document.getElementById("loading").innerText = "Generating...";
+
+  let url = "https://image.pollinations.ai/prompt/" + encodeURIComponent(prompt);
+
+  document.getElementById("image").src = url;
+
+  document.getElementById("loading").innerText = "";
+}
+</script>
 
 </body>
 </html>
