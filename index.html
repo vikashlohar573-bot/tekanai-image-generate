@@ -15,22 +15,44 @@
 
 <img id="image" width="300">
 
+<br><br>
+<button onclick="downloadImage()" style="padding:10px;">Download</button>
+
 <script>
 function generate() {
   let prompt = document.getElementById("prompt").value;
 
   if (!prompt) {
-    alert("Enter prompt");
+    alert("कुछ लिखो पहले!");
     return;
   }
 
-  document.getElementById("loading").innerText = "Generating...";
+  document.getElementById("loading").innerText = "Image बन रही है...";
 
-  let url = "https://image.pollinations.ai/prompt/" + encodeURIComponent(prompt);
+  // cache avoid करने के लिए random जोड़ रहे हैं
+  let url = "https://image.pollinations.ai/prompt/" 
+            + encodeURIComponent(prompt) 
+            + "?t=" + new Date().getTime();
 
-  document.getElementById("image").src = url;
+  let img = document.getElementById("image");
+  img.src = url;
 
   document.getElementById("loading").innerText = "";
+}
+
+// download fix
+function downloadImage() {
+  let img = document.getElementById("image").src;
+
+  if (!img) {
+    alert("पहले image बनाओ!");
+    return;
+  }
+
+  let a = document.createElement("a");
+  a.href = img;
+  a.download = "ai-image.png";
+  a.click();
 }
 </script>
 
